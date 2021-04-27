@@ -8,15 +8,18 @@ import { MyTestService } from '../my-test.service';
 })
 export class GalleryComponent implements OnInit {
 title='Recent Photos';
-visibleGallery:any[]=[];
 
+Items;
   constructor( private _MyTestService:MyTestService)  {
   
    }
 
   ngOnInit() {
-    this.visibleGallery=this._MyTestService.lis
-    console.log(this.visibleGallery);
+    this._MyTestService.getImage().subscribe((resp: any) => {
+      this.Items = resp.results;
+    
+      console.log(resp);
+    });
   }
  
 }
