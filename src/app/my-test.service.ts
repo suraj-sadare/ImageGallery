@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class MyTestService {
+export class MyTestService implements OnInit{
+  li:any;
+  lis=[];
 
-Images=[];
-getGallery(){
-  return this.Images=IMAGES.slice(0);
+  constructor(private http : HttpClient) {
+   
+   }
+  ngOnInit(){
+    this.http.get('https://api.unsplash.com/search/photos?query=nature&client_id=dImHk1zCW_FpUNZstfWT-Awoya37kzX32jTkZz9oxbc')
+    .subscribe(Response => {
+      this.li=Response;
+      this.lis=this.li.list;
+    });
+  }
 }
-  constructor() { }
-}
-const IMAGES =[
-  {"url":"https://unsplash.com/photos/Nx2djwRZxWU"},
-  {"url":"https://unsplash.com/photos/2AgdG6LMsPg"},
-  {"url":"https://unsplash.com/photos/f6wzKtGiBb0"},
-  {"url":"https://unsplash.com/photos/VDHn0YmjIw4"},
-  {"url":"https://unsplash.com/photos/cGMFif58sUc"},
-  {"url":"https://unsplash.com/photos/GyDktTa0Nmw"}
-];
+
+ 
