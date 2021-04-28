@@ -16,7 +16,7 @@ Items;
 
   ngOnInit() {
     this._MyTestService.getImage().subscribe((resp: any) => {
-      this.Items = resp.results;
+      this.Items = resp.results.slice(0,3);
     
       console.log(resp);
     });
